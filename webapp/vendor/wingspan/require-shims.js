@@ -23,7 +23,7 @@
             react: 'vendor/react',
             jsx: 'vendor/jsx',
             JSXTransformer: 'vendor/JSXTransformer',
-            'react-backbone': 'vendor/wingspan/react-backbone'
+            'react-backbone': 'vendor/react-backbone'
         },
         shim: {
             'underscore': { deps: [], exports: '_' },
