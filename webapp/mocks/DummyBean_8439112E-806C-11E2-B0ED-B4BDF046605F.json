@@ -1,0 +1,63 @@
+{
+    "version": "1.0",
+    "message": null,
+    "metaData": {
+        "root": "data",
+        "idProperty": null,
+        "nameProperty": null,
+        "messageProperty": "message",
+        "totalProperty": "totalCount",
+        "fields": [{
+            "name": "coreForLevel",
+            "type": "BOOLEAN",
+            "array": false,
+            "allowBlank": true,
+            "sortable": true,
+            "useNull": false
+        }, {
+            "name": "description",
+            "type": "STRING",
+            "array": false,
+            "allowBlank": true,
+            "sortable": true,
+            "useNull": true
+        }, {
+            "name": "isCoreForLevel",
+            "type": "BOOLEAN",
+            "array": false,
+            "allowBlank": true,
+            "sortable": true,
+            "useNull": false
+        }, {
+            "name": "modifiedDate",
+            "type": "DATE",
+            "array": false,
+            "allowBlank": true,
+            "sortable": true,
+            "useNull": true
+        }, {
+            "name": "tmfItemId",
+            "type": "STRING",
+            "array": false,
+            "allowBlank": true,
+            "sortable": true,
+            "useNull": true
+        }, {
+            "name": "tmfItemType",
+            "type": "STRING",
+            "array": false,
+            "allowBlank": true,
+            "sortable": true,
+            "useNull": true
+        }]
+    },
+    "totalCount": 1,
+    "data": {
+        "id": "8439112E-806C-11E2-B0ED-B4BDF046605F",
+        "tmfItemId": "110.17",
+        "tmfItemType": "Data QC / QA Plan & Results (Paper and EDC)",
+        "description": "To define the procedures for creating and implementing a Quality Control (QC) Plan to ensure that quality data is captured into a clinical database on an ongoing basis.",
+        "isCoreForLevel": false,
+        "modifiedDate": 1361911170254
+    }
+}

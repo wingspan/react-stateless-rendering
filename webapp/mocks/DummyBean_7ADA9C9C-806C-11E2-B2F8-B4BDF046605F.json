@@ -1,0 +1,63 @@
+{
+    "version": "1.0",
+    "message": null,
+    "metaData": {
+        "root": "data",
+        "idProperty": null,
+        "nameProperty": null,
+        "messageProperty": "message",
+        "totalProperty": "totalCount",
+        "fields": [{
+            "name": "coreForLevel",
+            "type": "BOOLEAN",
+            "array": false,
+            "allowBlank": true,
+            "sortable": true,
+            "useNull": false
+        }, {
+            "name": "description",
+            "type": "STRING",
+            "array": false,
+            "allowBlank": true,
+            "sortable": true,
+            "useNull": true
+        }, {
+            "name": "isCoreForLevel",
+            "type": "BOOLEAN",
+            "array": false,
+            "allowBlank": true,
+            "sortable": true,
+            "useNull": false
+        }, {
+            "name": "modifiedDate",
+            "type": "DATE",
+            "array": false,
+            "allowBlank": true,
+            "sortable": true,
+            "useNull": true
+        }, {
+            "name": "tmfItemId",
+            "type": "STRING",
+            "array": false,
+            "allowBlank": true,
+            "sortable": true,
+            "useNull": true
+        }, {
+            "name": "tmfItemType",
+            "type": "STRING",
+            "array": false,
+            "allowBlank": true,
+            "sortable": true,
+            "useNull": true
+        }]
+    },
+    "totalCount": 1,
+    "data": {
+        "id": "7ADA9C9C-806C-11E2-B2F8-B4BDF046605F",
+        "tmfItemId": "105.20",
+        "tmfItemType": "Clinical Trial Agreement",
+        "description": "To document agreement of trial requirements between sponsor or 3rd Party and site/ PI.",
+        "isCoreForLevel": true,
+        "modifiedDate": 1361911170254
+    }
+}

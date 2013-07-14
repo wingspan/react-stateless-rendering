@@ -1,0 +1,1 @@
+This 'locale' is just English with the Chinese character mangling for easy detection of proper localization.

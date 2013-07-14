@@ -1,0 +1,49 @@
+{
+    "version": "1.0",
+    "message": null,
+    "metaData": {
+        "root": "data",
+        "idProperty": null,
+        "nameProperty": null,
+        "messageProperty": "message",
+        "totalProperty": "totalCount",
+        "fields": [{
+            "name": "empty",
+            "type": "BOOLEAN",
+            "array": false,
+            "allowBlank": true,
+            "sortable": true,
+            "useNull": false
+        }, {
+            "name": "traversableAgain",
+            "type": "BOOLEAN",
+            "array": false,
+            "allowBlank": true,
+            "sortable": true,
+            "useNull": false
+        }]
+    },
+    "totalCount": 1,
+    "data": [{
+        "id": "55F8D1C8-806C-11E2-BE6C-B4BDF046605F",
+        "tmfItemId": "106.10",
+        "tmfItemType": "Accountability Documentation (Study Level)",
+        "description": "To document records of the dispensing IP to/from a distribution center, depot, trial site and/or site to subject and the reconciliation of IP prior to return to the sponsor.",
+        "isCoreForLevel": true,
+        "modifiedDate": 1361923534165
+    }, {
+        "id": "7ADA9C9C-806C-11E2-B2F8-B4BDF046605F",
+        "tmfItemId": "105.20",
+        "tmfItemType": "Clinical Trial Agreement",
+        "description": "To document agreement of trial requirements between sponsor or 3rd Party and site/ PI.",
+        "isCoreForLevel": true,
+        "modifiedDate": 1361923534165
+    }, {
+        "id": "8439112E-806C-11E2-B0ED-B4BDF046605F",
+        "tmfItemId": "110.17",
+        "tmfItemType": "Data QC / QA Plan & Results (Paper and EDC)",
+        "description": "To define the procedures for creating and implementing a Quality Control (QC) Plan to ensure that quality data is captured into a clinical database on an ongoing basis.",
+        "isCoreForLevel": false,
+        "modifiedDate": 1361923534165
+    }]
+}

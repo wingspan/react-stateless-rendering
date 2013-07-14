@@ -1,0 +1,63 @@
+{
+    "version": "1.0",
+    "message": null,
+    "metaData": {
+        "root": "data",
+        "idProperty": null,
+        "nameProperty": null,
+        "messageProperty": "message",
+        "totalProperty": "totalCount",
+        "fields": [{
+            "name": "coreForLevel",
+            "type": "BOOLEAN",
+            "array": false,
+            "allowBlank": true,
+            "sortable": true,
+            "useNull": false
+        }, {
+            "name": "description",
+            "type": "STRING",
+            "array": false,
+            "allowBlank": true,
+            "sortable": true,
+            "useNull": true
+        }, {
+            "name": "isCoreForLevel",
+            "type": "BOOLEAN",
+            "array": false,
+            "allowBlank": true,
+            "sortable": true,
+            "useNull": false
+        }, {
+            "name": "modifiedDate",
+            "type": "DATE",
+            "array": false,
+            "allowBlank": true,
+            "sortable": true,
+            "useNull": true
+        }, {
+            "name": "tmfItemId",
+            "type": "STRING",
+            "array": false,
+            "allowBlank": true,
+            "sortable": true,
+            "useNull": true
+        }, {
+            "name": "tmfItemType",
+            "type": "STRING",
+            "array": false,
+            "allowBlank": true,
+            "sortable": true,
+            "useNull": true
+        }]
+    },
+    "totalCount": 1,
+    "data": {
+        "id": "55F8D1C8-806C-11E2-BE6C-B4BDF046605F",
+        "tmfItemId": "106.10",
+        "tmfItemType": "Accountability Documentation (Study Level)",
+        "description": "To document records of the dispensing IP to/from a distribution center, depot, trial site and/or site to subject and the reconciliation of IP prior to return to the sponsor.",
+        "isCoreForLevel": true,
+        "modifiedDate": 1361911170254
+    }
+}

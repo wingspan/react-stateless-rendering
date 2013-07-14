@@ -1,0 +1,139 @@
+input.k-textbox {
+    background: #F9FBFD
+}
+
+.k-listview
+{
+    border: none;
+    background: none;
+}
+
+.k-state-selected
+{
+    background: none;
+}
+
+.k-combobox .k-dropdown-wrap,
+.k-combobox .k-dropdown-wrap.k-state-hover {
+    background: #F9FBFD;
+    border: solid 1px #CCC;
+    padding-right: 2px;
+}
+
+.k-combobox .k-dropdown-wrap input {
+    background: #F9FBFD;
+}
+
+/*.k-combobox .k-dropdown-wrap span.k-select {
+    display: none;
+}*/
+
+.k-datetimepicker {
+    width: 220px;
+}
+
+
+.k-datetimepicker .k-picker-wrap,
+.k-datetimepicker .k-picker-wrap.k-state-hover {
+    border: none;
+    background: #F9FBFD;
+    border: solid 1px #CCC;
+    border-radius: 4px;
+    padding-right: 57px;
+}
+
+.k-datetimepicker .k-picker-wrap.k-state-hover .k-icon {
+    opacity: .8;
+}
+
+.k-datetimepicker .k-picker-wrap input.k-input {
+    height: 30px;
+    background: none;
+    font-size: 14px;
+    color: #333333;
+}
+
+.k-datetimepicker .k-picker-wrap .k-select {
+    height: 29px;
+    padding: 0 10px 0 0;
+    margin: 0;
+    width: 47px;
+    padding-top: 6px;
+    border-left: solid 1px #CCC;
+    margin-top: 0px;
+}
+
+.k-datetimepicker .k-picker-wrap.k-state-active {
+    box-shadow: none;
+}
+
+.k-datetimepicker .k-picker-wrap.k-state-border-down {
+    padding-bottom: 0px;
+}
+
+.k-datetimepicker .k-picker-wrap .k-select .k-i-calendar {
+    margin-left: 9px;
+    margin-right: 5px;
+    margin-bottom: 1px;
+}
+
+.k-datetimepicker .k-picker-wrap .k-select .k-i-calendar:hover {
+    opacity: 1;
+}
+
+.k-datetimepicker .k-picker-wrap .k-select .k-i-clock {
+    margin-bottom: 1px;
+}
+
+.k-datetimepicker .k-picker-wrap .k-select .k-i-clock:hover {
+    opacity: 1;
+}
+
+.k-animation-container .k-calendar-container,
+.k-animation-container .k-list-container {
+    width: 214px;
+    border-radius: 4px;
+}
+
+.k-animation-container .k-calendar-container .k-widget.k-calendar {
+    width: 214px;
+}
+
+.k-animation-container .k-list-container {
+    width: 219px;
+    margin-top: 2px;
+}
+
+.k-picker-wrap.k-state-focused {
+    box-shadow: none;
+}
+
+td.k-state-hover,
+td.k-state-hover:hover,
+td.k-state-selected,
+td.k-state-focused,
+td.k-state-focused:hover,
+td.k-state-hover.k-state-selected,
+td.k-state-hover.k-state-focused,
+td.k-state-selected.k-state-focused,
+.k-item.k-state-selected,
+.k-item.k-state-hover {
+    background-color: #E9F2F7;
+    border-color: transparent;
+    background-image: none;
+}
+
+.k-state-selected>.k-link,
+.k-state-selected.k-state-focused,
+.k-item.k-state-selected {
+    color: #333333;
+}
+
+.k-popup .k-item.k-state-hover {
+    border-color: transparent;
+}
+
+.k-dropdown-wrap .k-input,
+.k-dropdown-wrap.k-state-border-down {
+    border-radius: 4px;
+}

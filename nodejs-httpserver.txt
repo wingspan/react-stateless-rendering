@@ -1,0 +1,6 @@
+1.install node.js
+2.install http-server
+    npm install http-server -g
+3.run http-server
+    http-server -p 8082 -c-1
+    -c-1 sets the no-cache header

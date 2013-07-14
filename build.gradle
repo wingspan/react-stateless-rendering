@@ -1,0 +1,134 @@
+/*
+ * Copyright 2002-2013 by Wingspan Technology, Inc.,
+ * All rights reserved.
+ *
+ * This software is the confidential and proprietary information
+ * of Wingspan Technology, Inc. ("Confidential Information"). You
+ * shall not disclose such Confidential Information and shall use
+ * it only in accordance with the terms of the license agreement
+ * you entered into with Wingspan Technology.
+ *
+ */
+
+// This dependencies section is specifically for gradle plugins that we use
+// Project/build dependencies should NOT go in here
+buildscript {
+    repositories {
+        mavenCentral()
+
+        maven{
+            url = 'http://kellyrob99.github.com/Jenkins-api-tour/repository'
+        }
+    }
+    dependencies {
+        // Needed for 'js' plugin (driver for require optimizer)
+        classpath 'com.eriwen:gradle-js-plugin:1.5.0'
+        // Needed for 'jslint' plugin
+        classpath 'org.kar:gradle-jslint-plugin:0.2'
+    }
+}
+
+apply plugin: 'war'
+apply plugin: 'jetty'
+apply plugin: 'js'
+apply plugin: 'jslint'
+
+//configurations {
+//    // Remove scala dependency inherited from ../build.gradle
+//    compile.exclude module: 'scala-library'
+//}
+
+ext {
+//    props = file('jetty.settings').withReader { reader ->
+//        def props = new Properties()
+//        props.load(reader)
+//        return props
+//    }
+}
+
+// see http://stackoverflow.com/questions/11032342/gradle-jetty-plugin-locking-files
+[jettyRun, jettyRunWar]*.with {
+    webDefaultXml = file('jetty-webdefault.xml')
+}
+
+// jetty settings: these are defaults
+// overrides will be loaded from an optional props file.
+httpPort = 8085
+stopPort = 9455
+stopKey = 'klappenschlange'
+
+def jettyProps() {
+    // just in time configuration of the jetty server.
+    def jpf = file("jetty.properties")
+    if (jpf.file) {
+        jpf.withReader { reader ->
+            def ps = new Properties()
+            ps.load(reader)
+            httpPort = ps.get('httpPort').toInteger()
+            stopPort = ps.get('stopPort').toInteger()
+            stopKey = ps.get('stopKey')
+        }
+    }
+    // easy to forget which port is configured.
+    println "-- jetty port: ${httpPort}"
+}
+//jettyRun.webAppSourceDirectory = file('webapp')
+jettyRun() {
+    webAppSourceDirectory = file('webapp')
+}
+jettyRun.doFirst {
+    jettyProps()
+}
+jettyRun.doLast {
+    println("We're done here.")
+}
+
+javascript.source {
+    dev {
+        js {
+            srcDir "webapp"
+            include "**/*.js"
+        }
+    }
+}
+
+jslint {
+    inputDirs = ['webapp']
+    haltOnFailure = false
+    excludes = 'vendor/**/*.js'
+    formatterType = 'plain'
+}
+
+requireJs {
+    source = javascript.source.dev.js.files
+    dest = "${buildDir}/require/app.js"
+    requirejs.buildprofile = file("optimize.js")
+}
+
+war {
+    from 'webapp'
+}
+
+task createVersionFile {
+    doLast {
+        new File("${buildDir}").mkdir()
+        new File("${buildDir}/versioninfo").mkdir()
+
+        new File("${buildDir}/versioninfo/version.txt").text = 'branch=' + "git symbolic-ref --short HEAD".execute().text.trim() + '\nsha=' + "git rev-parse HEAD".execute().text.trim() + '\n'
+    }
+}
+
+task zipDist(type: Zip, dependsOn: [createVersionFile, requireJs]) {
+    from fileTree(
+            dir: "webapp",
+            exclude: [
+                    "vendor/wingspan/require-optimizer.js",
+                    "tmf/mocks.js",
+                    "data",
+                    "mocks",
+                    "*.html"
+            ]
+    )
+    from "${buildDir}/require/app.js"
+    from "${buildDir}/versioninfo"
+}
