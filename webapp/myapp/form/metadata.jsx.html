@@ -1,23 +1,11 @@
 <div>
-    <div class="facetWrap" data-wspt-id="editorForm">
-        <div class="facet open">
-            <div class="controls">
-                <div class="icon"></div>
-                <div class="itemLabel">Attributes</div>
-            </div>
-            <MetadataForm record={record} />
-        </div>
-    </div>
-    <div class="facetControls">
-        <ul class="controls">
-            <li>
-                <div class="primaryButton" onClick={onFormSave}>
-                    <div>
-                        <span>Save</span>
-                    </div>
-                </div>
-            </li>
-        </ul>
-    </div>
+
+    <h1>Model Attributes</h1>
+    <MetadataForm record={record} />
+    <h1>available actions</h1>
+
+    <ul>
+        <li><span onClick={onFormSave}>Save</span></li>
+    </ul>
 
 </div>
