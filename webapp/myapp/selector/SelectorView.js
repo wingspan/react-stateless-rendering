@@ -8,7 +8,7 @@ define([
 
 
 
-    var SelectorView = React.createBackboneClass({
+    var SelectorView = React.createClass({
         render: function () {
             console.assert(!!this.props.records);
             console.assert(!!this.props.onSelect);
@@ -17,9 +17,12 @@ define([
             var items = this.props.records.map(function (record) {
                 var scope = {
                     id: record.id,
-                    onClick: _.partial(self.props.onSelect, record.id)
+                    onClick: function (e) {
+                        self.props.onSelect(record.id);
+                        return false;
+                    }
                 };
-                return jsxutil.exec('<li onClick={onClick}>{id}</li>', scope);
+                return jsxutil.exec('<li><a href="#" onClick={onClick}>{id}</a></li>', scope);
             });
 
 
