@@ -1,11 +1,7 @@
 define([
-    'underscore', 'jquery', 'react', 'platform/jsxutil',
-    'text!myapp/selector/selector.jsx.html'
-], function (_, $, React, jsxutil, selectorJsx) {
+    'underscore', 'jquery', 'react'
+], function (_, $, React) {
     'use strict';
-
-
-
 
 
     var SelectorView = React.createClass({
@@ -15,21 +11,26 @@ define([
             var self = this;
 
             var items = this.props.records.map(function (record) {
-                var scope = {
-                    id: record.id,
-                    onClick: function (e) {
-                        self.props.onSelect(record.id);
-                        return false;
-                    }
-                };
-                return jsxutil.exec('<li><a href="#" onClick={onClick}>{id}</a></li>', scope);
+
+                function onClick(e) {
+                    void e;
+                    self.props.onSelect(record.id);
+                    return false;
+                }
+
+                return (
+                    <li><a href="#" onClick={onClick}>{record.id}</a></li>
+                );
             });
 
-
-            var scope = {
-                items: items
-            };
-            return jsxutil.exec(selectorJsx, scope);
+            return (
+                <div>
+                    <h1>Model Selector</h1>
+                    <ul>
+                    {items}
+                    </ul>
+                </div>
+            );
         }
     });
 

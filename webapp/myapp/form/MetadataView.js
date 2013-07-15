@@ -1,10 +1,8 @@
 define([
-    'underscore', 'jquery', 'react', 'platform/jsxutil',
+    'underscore', 'jquery', 'react',
     'platform/controls/react/ReactControlFactory',
-    'text!myapp/form/metadata.jsx.html',
-    'text!myapp/form/field.jsx.html',
     'text!myapp/schema/DummyBean.json'
-], function (_, $, React, jsxutil, ReactControlFactory, metadataJsx, fieldJsx, studyItemModelString) {
+], function (_, $, React, ReactControlFactory, studyItemModelString) {
     'use strict';
 
     var modelSchema = JSON.parse(studyItemModelString).data;
@@ -15,18 +13,23 @@ define([
             console.assert(!!this.props.fieldName);
             console.assert(!!this.props.metadata);
 
-            var scope = {
-                helpTextLabel: 'l10n: Instruction Text',
+            var control = ReactControlFactory.build(this.props.fieldName, this.props.metadata, this.props.record);
 
-                fieldName: this.props.fieldName,
-                helpText: this.props.metadata.helpText,
-                control: ReactControlFactory.build(this.props.fieldName, this.props.metadata, this.props.record),
-                //control: wspt.jsxutil.exec('<input type="text" value={id} />', { id: this.props.record.id }),
-                onClickFieldLock: function (e) {
-                    $(e.target).toggleClass('fieldLockOn');
-                }
-            };
-            return jsxutil.exec(fieldJsx, scope);
+            function onClickFieldLock(e) {
+                $(e.target).toggleClass('fieldLockOn');
+            }
+
+            return (
+                <div class="formField">
+                    <label class="formLabel hasTooltip">
+                        <span class="statusIcon">{this.props.fieldName}</span>
+                    </label>
+                    {control}
+                    <div class="fieldLock" onClick={onClickFieldLock}></div>
+                </div>
+            );
+
+
         },
 
         value: React.autoBind(function () {
@@ -42,19 +45,15 @@ define([
             var self = this;
 
             var fieldsPseudoDom = _.map(modelSchema.fields, function (fieldInfo, fieldName) {
-                var scope = {
-                    Field: Field,
-                    fieldName: fieldName,
-                    record: self.props.record,
-                    metadata: fieldInfo
-                };
-                return jsxutil.exec('<Field record={record} fieldName={fieldName} metadata={metadata} ref={fieldName} />', scope);
+                return (
+                    <Field record={self.props.record}
+                           fieldName={fieldName}
+                           metadata={fieldInfo}
+                           ref={fieldName} />
+                );
             });
 
-            var scope = {
-                fields: fieldsPseudoDom
-            };
-            return jsxutil.exec('<div class="content">{fields}</div>', scope);   // how do i avoid spurious div?
+            return (<div class="content">{fieldsPseudoDom}</div>);
         },
 
         value: React.autoBind(function (e) {
@@ -74,12 +73,16 @@ define([
             console.assert(!!this.props.record);
             console.assert(!!this.props.onFormSave);
 
-            var scope = {
-                MetadataForm: MetadataForm,
-                record: this.props.record,
-                onFormSave: this.onClickSave
-            };
-            return jsxutil.exec(metadataJsx, scope);
+            return (
+                <div>
+                    <h1>Model Attributes</h1>
+                    <MetadataForm record={this.props.record} ref="form" />
+                    <h1>available actions</h1>
+                    <ul>
+                        <li><a href="#" onClick={this.onClickSave}>Save</a></li>
+                    </ul>
+                </div>
+            );
         },
 
         onClickSave: React.autoBind(function (e) {

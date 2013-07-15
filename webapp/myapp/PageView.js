@@ -1,8 +1,8 @@
 define([
-    'underscore', 'react', 'platform/jsxutil',
-    'myapp/form/MetadataView',
-    'myapp/selector/SelectorView'
-], function (_, React, jsxutil, MetadataView, SelectorView) {
+    'underscore', 'react',
+    'jsx!myapp/form/MetadataView',
+    'jsx!myapp/selector/SelectorView'
+], function (_, React, MetadataView, SelectorView) {
     'use strict';
 
 
@@ -13,16 +13,14 @@ define([
             console.assert(!!this.props.onFormSave);
             console.assert(!!this.props.onSelect);
 
-            var scope = {
-                Selector: SelectorView,
-                MetadataView: MetadataView,
-                selectedRecord: _.findWhere(this.props.records, { id: this.props.selectedId }) || {},
-                records: this.props.records,
-                selectedId: this.props.selectedId,
-                onFormSave: this.props.onFormSave,
-                onSelect: this.props.onSelect
-            };
-            return jsxutil.exec('<div><Selector records={records} onSelect={onSelect} /><MetadataView record={selectedRecord} onFormSave={onFormSave} /></div>', scope);
+            var selectedRecord = _.findWhere(this.props.records, { id: this.props.selectedId }) || {};
+
+            return (
+                <div>
+                    <SelectorView records={this.props.records} onSelect={this.props.onSelect} />
+                    <MetadataView record={selectedRecord} onFormSave={this.props.onFormSave} />
+                </div>
+            );
         }
     });
 
