@@ -1,6 +1,7 @@
+/** @jsx React.DOM */
 define([
-    'underscore', 'jquery', 'react', 'kendo', 'platform/jsxutil'
-], function (_, $, React, kendo, jsxutil) {
+    'underscore', 'jquery', 'react', 'kendo'
+], function (_, $, React, kendo) {
     'use strict';
 
     return React.createClass({
@@ -9,7 +10,7 @@ define([
             console.assert(!!this.props.value);
             console.assert(!!this.props.metadata);
 
-            return jsxutil.exec('<span />', {});
+            return (<span />);
         },
 
         componentDidMount: function (rootNode) {

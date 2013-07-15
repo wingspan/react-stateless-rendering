@@ -1,3 +1,4 @@
+/** @jsx React.DOM */
 define([
     'underscore', 'jquery', 'react'
 ], function (_, $, React) {

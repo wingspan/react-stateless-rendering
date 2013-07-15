@@ -1,11 +1,11 @@
+/** @jsx React.DOM */
 define([
-    'underscore', 'jquery', 'react', 'platform/jsxutil',
+    'underscore', 'jquery', 'react',
     'platform/controls/react/KendoText',
     'platform/controls/react/KendoBoolean',
     'platform/controls/react/KendoNumber',
-    'platform/controls/react/KendoDatetime',
-    'react-backbone'
-], function (_, $, React, jsxutil,
+    'platform/controls/react/KendoDatetime'
+], function (_, $, React,
              KendoText, KendoBoolean, KendoNumber, KendoDatetime) {
     'use strict';
 
@@ -41,27 +41,18 @@ define([
      * @returns {*}
      */
     function build(fieldName, metadata, record) {
-        var scope = {
-            KendoText: KendoText,
-            KendoBoolean: KendoBoolean,
-            KendoNumber: KendoNumber,
-            KendoDatetime: KendoDatetime,
-            fieldName: fieldName,
-            metadata: metadata,
-            value: record[fieldName]
-        };
+        var value = record[fieldName];
 
         var dispatch = {
-            text: '<KendoText value={value} fieldName={fieldName} ref={fieldName} />',
-            //number: '<KendoNumber value={value} fieldName={fieldName} metadata={metadata} ref={fieldName} />',
-            number: '<KendoText value={value} fieldName={fieldName} ref={fieldName} />',
-            datetime: '<KendoDatetime value={value} fieldName={fieldName} ref={fieldName} />',
-            boolean: '<KendoBoolean value={value} fieldName={fieldName} ref={fieldName} />',
-            rawtext: '<input type="text" value={value} ref={fieldName} />'
+            text: (<KendoText value={value} fieldName={fieldName} ref={fieldName} />),
+            //number: (<KendoNumber value={value} fieldName={fieldName} metadata={metadata} ref={fieldName} />),
+            number: (<KendoText value={value} fieldName={fieldName} ref={fieldName} />),
+            datetime: (<KendoDatetime value={value} fieldName={fieldName} ref={fieldName} />),
+            boolean: (<KendoBoolean value={value} fieldName={fieldName} ref={fieldName} />),
+            rawtext: (<input type="text" value={value} ref={fieldName} />)
         };
 
-        var jsx = dispatch[metadata.dataType] || '<input type="text" value={metadata.dataType} />';
-        return jsxutil.exec(jsx, scope);
+        return dispatch[metadata.dataType] || (<input type="text" value={metadata.dataType} />);
     }
 
     return {

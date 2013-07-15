@@ -1,7 +1,8 @@
+/** @jsx React.DOM */
 define([
     'underscore', 'jquery', 'react',
     'platform/controls/react/ReactControlFactory',
-    'text!myapp/schema/DummyBean.json'
+    'text!string/schema/DummyBean.json'
 ], function (_, $, React, ReactControlFactory, studyItemModelString) {
     'use strict';
 
@@ -68,7 +69,7 @@ define([
     });
 
 
-    var MetadataView = React.createBackboneClass({
+    var MetadataView = React.createClass({
         render: function () {
             console.assert(!!this.props.record);
             console.assert(!!this.props.onFormSave);

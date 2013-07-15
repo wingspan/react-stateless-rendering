@@ -1,8 +1,7 @@
 define([
-    'underscore', 'jquery', 'backbone', 'react', 'platform/jsxutil',
-    'text!myapp/schema/DummyBean.json',
-    'jsx!myapp/PageView'
-], function (_, $, Backbone, React, jsxutil, sDummyBeanSchema, PageView) {
+    'underscore', 'jquery', 'backbone', 'react',
+    'myapp/PageView'
+], function (_, $, Backbone, React, PageView) {
     'use strict';
 
 

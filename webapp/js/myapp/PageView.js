@@ -1,7 +1,8 @@
+/** @jsx React.DOM */
 define([
     'underscore', 'react',
-    'jsx!myapp/form/MetadataView',
-    'jsx!myapp/selector/SelectorView'
+    'myapp/form/MetadataView',
+    'myapp/selector/SelectorView'
 ], function (_, React, MetadataView, SelectorView) {
     'use strict';
 
