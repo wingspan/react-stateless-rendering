@@ -18,18 +18,10 @@ define([
         });
 
 
-        $.mockjax(function(settings) {
-            // settings.url == '/api/types/DummyBean'
-            var service = settings.url.match(/\/api\/types\/(.*)$/)   //  ["/api/types/DummyBean", "DummyBean"]
-            if (service) {
-                var typeName = service[1];
-                return {
-                    contentType: 'text/json',
-                    responseTime: 100,
-                    proxy: _.str.sprintf('mocks/%s.json', typeName)
-                };
-            }
-            return;
+        $.mockjax({
+            url: '/api/beans/DummyBean',
+            type: 'GET',
+            proxy: 'mocks/DummyBeans.json'
         });
 
         $.mockjax(function(settings) {

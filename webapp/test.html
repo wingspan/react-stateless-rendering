@@ -11,17 +11,24 @@
 <body>
 
 <h1>Demo of a dynamic form backed by a Backbone model</h1>
-<p>Try pasting the following in a javascript console, and then have a look at myapp/page.js</p>
-<pre>
-window.model.set({id: "7ADA9C9C-806C-11E2-B2F8-B4BDF046605F"}); window.model.fetch();
-window.model.set({id: "8439112E-806C-11E2-B0ED-B4BDF046605F"}); window.model.fetch();
-</pre>
 
 <hr>
 
+<style type="text/css">
+    .container {
+        margin: 0 auto;
+    }
+    .container > div {
+        position: relative;
+        display: inline-block;
+        margin: 25px;
+    }
+
+</style>
+
 <div class="container">
-    <div data-id="form1"></div>
-    <div data-id="form2"></div>
+    <div data-myapp-id="selector"></div>
+    <div data-myapp-id="form"></div>
 </div>
 
 <script type="text/javascript" src="vendor/require-2.1.6.js"></script>

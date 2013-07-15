@@ -1,11 +1,11 @@
 define([
-    'underscore', 'jquery', 'react', 'platform/jsxutil', 'platform/util',
+    'underscore', 'jquery', 'react', 'platform/jsxutil',
     'platform/controls/react/KendoText',
     'platform/controls/react/KendoBoolean',
     'platform/controls/react/KendoNumber',
     'platform/controls/react/KendoDatetime',
     'react-backbone'
-], function (_, $, React, jsxutil, util,
+], function (_, $, React, jsxutil,
              KendoText, KendoBoolean, KendoNumber, KendoDatetime) {
     'use strict';
 

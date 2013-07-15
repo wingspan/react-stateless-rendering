@@ -1,42 +1,65 @@
 define([
-    'underscore', 'jquery', 'backbone', 'react', 'platform/util',
+    'underscore', 'jquery', 'backbone', 'react',
     'text!myapp/schema/DummyBean.json',
-    'myapp/form/MetadataView'
-], function (_, $, Backbone, React, util, sDummyBeanSchema, MetadataView) {
+    'myapp/form/MetadataView',
+    'myapp/selector/SelectorView'
+], function (_, $, Backbone, React, sDummyBeanSchema, MetadataView, SelectorView) {
     'use strict';
 
     var dummyBeanSchema = JSON.parse(sDummyBeanSchema).data;
 
     function entrypoint() {
 
-        var DummyBean = Backbone.Model.extend({
-            urlRoot: '/api/beans/DummyBean',
-            parse: function(modelResponse) {
+        var DummyBeanCollection = Backbone.Collection.extend({
+            url: '/api/beans/DummyBean',
+            parse: function (modelResponse) {
                 return modelResponse.data;
             }
         });
 
-        var model = new DummyBean({id: '8439112E-806C-11E2-B0ED-B4BDF046605F'});
+        var beanCollecton = new DummyBeanCollection();
+        var selectedIdModel = new Backbone.Model();
 
-        var $el = $('[data-id="form1"]')[0];
 
-        function renderForm() {
-            React.renderComponent(MetadataView({
-                record: model.toJSON(),
-                onFormSave: _.bind(console.log, console)
-            }), $el);
+        function renderPage() {
+
+            var records = beanCollecton.toJSON();
+            var selectedId = selectedIdModel.get('selectedId') || '';
+            var selectedRecord = (!!beanCollecton.get(selectedId)
+                ? beanCollecton.get(selectedId).toJSON()
+                : {});
+
+            function renderForm($el) {
+                React.renderComponent(MetadataView({
+                    record: selectedRecord,
+                    onFormSave: _.bind(console.log, console)
+                }), $el);
+            }
+
+            function renderSelector($el) {
+                React.renderComponent(SelectorView({
+                    records: records,
+                    onSelect: function (ormid) {
+                        selectedIdModel.set('selectedId', ormid);
+                    }
+                }), $el);
+            }
+
+            function toEl(sel) { return $(sel)[0]; }
+
+            ['[data-myapp-id="form"]'].map(toEl).map(renderForm);
+            ['[data-myapp-id="selector"]'].map(toEl).map(renderSelector);
+
         }
 
-        renderForm();
-        model.on('sync', renderForm);
-        model.fetch();
-
-
-        // Save reference to model for console debugging, e.g.
-        //   window.model.add({'title': 'asfdasdf'})
-        //   JSON.stringify(window.model.toJSON())
-        //
-        window.model = model;
+        renderPage(beanCollecton.toJSON(), selectedIdModel.get('selectedId'));
+        beanCollecton.on('sync', function () {
+            renderPage(beanCollecton.toJSON(), selectedIdModel.get('selectedId'));
+        });
+        selectedIdModel.on('change:selectedId', function () {
+            renderPage(beanCollecton.toJSON(), selectedIdModel.get('selectedId'));
+        });
+        beanCollecton.fetch();
     }
 
     return {
