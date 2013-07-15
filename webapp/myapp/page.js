@@ -29,9 +29,14 @@ define([
         React.renderComponent(PageView({
             records: records,
             selectedId: selectedId,
-            onFormSave: _.bind(console.log, console),
+            onFormSave: function(formVal) {
+                console.log(formVal, records, selectedId);
+            },
             onSelect: function (ormid) {
-                _.defer(_.partial(renderPage, records, ormid));  // OMG recursion!
+                // since we don't have mutable state (events on mutable models), we must use recursion to re-render.
+                // use _defer to truncate the call stack since we don't have tail-call optimization
+                var thunk = _.partial(renderPage, records, ormid);  // OMG recursion!
+                _.defer(thunk);
             }
         }), $('[data-myapp-id="root"]')[0]);
 

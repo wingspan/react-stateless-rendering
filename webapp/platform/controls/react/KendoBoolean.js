@@ -24,7 +24,11 @@ define([
         componentDidUpdate: function (prevProps, prevState, rootNode) {
             var $el = $(rootNode);
             $el.data('kendoDropDownList').value(this.props.value);
-        }
+        },
+
+        value: React.autoBind(function () {
+            return $(this.getDOMNode()).data('kendoDropDownList').value();
+        })
 
     });
 

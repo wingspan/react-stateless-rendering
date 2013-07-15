@@ -20,7 +20,11 @@ define([
 
         componentDidUpdate: function (prevProps, prevState, rootNode) {
             $(rootNode).data('kendoDateTimePicker').value(new Date(this.props.value));
-        }
+        },
+
+        value: React.autoBind(function () {
+            return $(this.getDOMNode()).data('kendoDateTimePicker').value();
+        })
 
     });
 

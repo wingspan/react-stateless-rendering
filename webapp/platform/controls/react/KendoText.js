@@ -17,7 +17,11 @@ define([
 
         componentDidUpdate: function (prevProps, prevState, rootNode) {
             $(rootNode).val(this.props.value);
-        }
+        },
+
+        value: React.autoBind(function () {
+            return this.getDOMNode().value;
+        })
 
     });
 

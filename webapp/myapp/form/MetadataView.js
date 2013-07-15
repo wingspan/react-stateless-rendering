@@ -27,11 +27,16 @@ define([
                 }
             };
             return jsxutil.exec(fieldJsx, scope);
-        }
+        },
+
+        value: React.autoBind(function () {
+            void this;
+            return this.refs[this.props.fieldName].value();
+        })
     });
 
 
-    var MetadataForm = React.createBackboneClass({
+    var MetadataForm = React.createClass({
         render: function () {
             console.assert(!!this.props.record);
             var self = this;
@@ -43,14 +48,24 @@ define([
                     record: self.props.record,
                     metadata: fieldInfo
                 };
-                return jsxutil.exec('<Field record={record} fieldName={fieldName} metadata={metadata} />', scope);
+                return jsxutil.exec('<Field record={record} fieldName={fieldName} metadata={metadata} ref={fieldName} />', scope);
             });
 
             var scope = {
                 fields: fieldsPseudoDom
             };
             return jsxutil.exec('<div class="content">{fields}</div>', scope);   // how do i avoid spurious div?
-        }
+        },
+
+        value: React.autoBind(function (e) {
+            var self = this;
+
+            var vals = _.object(_.keys(modelSchema.fields).map(function (fieldName) {
+                return [fieldName, self.refs[fieldName].value()];
+            }));
+
+            return vals;
+        })
     });
 
 
@@ -62,10 +77,17 @@ define([
             var scope = {
                 MetadataForm: MetadataForm,
                 record: this.props.record,
-                onFormSave: this.props.onFormSave
+                onFormSave: this.onClickSave
             };
             return jsxutil.exec(metadataJsx, scope);
-        }
+        },
+
+        onClickSave: React.autoBind(function (e) {
+            void e;
+            var formVal = this.refs.form.value();
+            this.props.onFormSave(formVal);
+            return false;
+        })
     });
 
 
