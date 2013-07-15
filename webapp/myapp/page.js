@@ -30,7 +30,7 @@ define([
             records: records,
             selectedId: selectedId,
             onFormSave: function(formVal) {
-                console.log(formVal, records, selectedId);
+                alert(JSON.stringify(formVal));
             },
             onSelect: function (ormid) {
                 // since we don't have mutable state (events on mutable models), we must use recursion to re-render.
