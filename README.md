@@ -2,12 +2,12 @@
 
 * no Backbone models
 * no Knockout viewmodels
-* referentially transparent programming model - no mutable state at all, unless you choose it
+* referentially transparent programming model - almost no mutable state
 * imperative-style widget library (with mutable state) wrapped into functional-style programming model
 
 ## how to run locally
 
-* npm install -g react-tools
+* `npm install -g react-tools`
 * `jsx --watch js js-built`
-* python -m SimpleHTTPServer 8001       (from project root)
+* `python -m SimpleHTTPServer 8001`       (from project root)
 * navigate to `http://localhost:8001/webapp/test.html`
